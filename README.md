@@ -1,2 +1,15 @@
 # FIUMARGDB_marg_signals_and_reference_orientations
 comma-separated-value records of tri-axial accelerometer, gyroscope and magnetometer from a MEMS MARG, along with "ground-truth" orientations from an OptiTrack V120Trio Optical Motion Capture system.
+
+FIUMARGDB is a repository of comma-separated-value (CSV) files where signals from a MEMS Magnetic, Angular-Rate, Gravity (“MARG) sensor module were recorded, along with “ground-truth” reference orientations (as quaternions) calculated by an OptiTrack V12:Trio Optical Motion Capture system. Each row in the CSV files also contains the quaternion orientation computed by the onboard Kalman Filter in the MARG module. The first row in the CSV files has the header information.
+The objective of these files is to provide MARG signals (from the accelerometers, magnetometers and gyroscopes of this module) that can be used by orientation estimation algorithms to generate orientation estimates (in quaternion form). Then the output of the orientation estimation algorithm under evaluation can be compared with the output of the Trio Optical Motion Capture system, considered as “ground-truth” (i.e., correct) orientation.
+The repository also includes these Matlab programs, which may facilitate the use of the FIU MARGDB files in Matlab:
+a) showMARGSignals.m – SCRIPT that brings the signals from a CSV file into the Matlab workspace and plots the 3 accelerometer signals, the 3 gyroscope signals and the 3 magnetometer signals through time. It also plots the time evolution of the 4 components of the “ground-truth” quaternion orientation computed by the Trio system.
+b)	showTrioOut.m – SCRIPT that that brings the signals from a CSV file into the Matlab workspace and plots position coordinates tracked by the Trio system, the time evolution of the 4 components of the “ground-truth” quaternion orientation computed by the Trio system (same as in a) above), the flag indicating the status of the Trio system, and the time evolution of the 4 components of the quaternion orientation computed by the Kalman Filter onboard the MARG.
+c)	showDifTrioKF.m – SCRIPT that brings the signals from a CSV file into the Matlab workspace and plots the time evolution of the 4 components of the “ground-truth” quaternion orientation computed by the Trio system, the time evolution of the 4 components of the quaternion orientation computed by the Kalman Filter onboard the MARG and the quaternion “distance” (angle difference), between both quaternions (Trio and KF), computed with Matlab command dist and expressed in degrees.
+IN EACH OF THE 3 ABOVE SCRIPTS THE FILE TO VISUALIZE IS DEFINED IN THE FIRST NON-COMMENT LINE, WHICH MUST BE CHANGED AS NEEDED.
+ALL 3 OF THE SCRIPTS described above CALL THE FUNCTION readDBFile  (also included) :
+readDBFile.m – Matlab FUNCTION that opens a CVS file from the FIUMARGDB dataset, returning its contents as matrices or vectors.
+To facilitate the management of the files they have been archived in ZIP files containing 5 record files each. For example:
+REC_01-05.ZIP contains rec01.csv to rec05.csv ,
+REC_06-10.ZIP contains rec06.csv to rec10.csv ,  etc. 
