@@ -16,7 +16,7 @@ N = length(t);          % Detect the number of samples in the file
 tsec = t/1000;          % t in seconds
 tsend = tsec(N);        % Detect the latency of last sample
 % - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - -
-S1C = [0 0 0 1; 1 0 0 0; 0 1 0 0; 0 0 0 1]'; %Matrix to put scalar first
+S1C = [0 0 0 1; 1 0 0 0; 0 1 0 0; 0 0 1 0]'; %Matrix to put scalar first
 % Put scalar part of quaternion first for KF and Trio Orientation
 % Which is how the matlab commands "quaternion" and "dist" expect them
 qKalman1 = qKalman * S1C ;
